@@ -5,12 +5,10 @@ import {
   View,
 } from 'react-native';
 
-import Calendar from 'react-native-calendar';
+import Calendar from './react-native-calendar';
 import moment from 'moment';
 
 const customDayHeadings = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-const customMonthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May',
-  'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 const styles = StyleSheet.create({
   container: {
@@ -30,6 +28,12 @@ const styles = StyleSheet.create({
   },
 });
 
+const CustomTopBar = () => (
+    <View>
+      <Text>Custom topBar</Text>
+    </View>
+);
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -47,7 +51,6 @@ class App extends Component {
           scrollEnabled
           showControls
           dayHeadings={customDayHeadings}
-          monthNames={customMonthNames}
           titleFormat={'MMMM YYYY'}
           prevButtonText={'Prev'}
           nextButtonText={'Next'}
@@ -56,6 +59,7 @@ class App extends Component {
           onTouchNext={() => console.log('Forward TOUCH')}  // eslint-disable-line no-console
           onSwipePrev={() => console.log('Back SWIPE')}     // eslint-disable-line no-console
           onSwipeNext={() => console.log('Forward SWIPE')}  // eslint-disable-line no-console
+          onTitlePress={() => console.log('Title Press')}  // eslint-disable-line no-console
         />
         <Text>Selected Date: {moment(this.state.selectedDate).format('MMMM DD YYYY')}</Text>
       </View>
