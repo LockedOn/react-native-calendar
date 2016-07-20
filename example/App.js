@@ -50,6 +50,7 @@ class App extends Component {
           eventDates={['2016-07-03', '2016-07-05', '2016-07-28', '2016-07-30']}
           scrollEnabled
           showControls
+          weekStart={7}
           dayHeadings={customDayHeadings}
           titleFormat={'MMMM YYYY'}
           prevButtonText={'Prev'}

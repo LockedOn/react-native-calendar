@@ -43,13 +43,14 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: 'center',
     marginVertical: 5,
+    color: '#333',
   },
   weekendHeading: {
     flex: 1,
     fontSize: 15,
     textAlign: 'center',
     marginVertical: 5,
-    color: '#cccccc',
+    color: '#333',
   },
   weekRow: {
     flexDirection: 'row',
@@ -68,6 +69,7 @@ const styles = StyleSheet.create({
   day: {
     fontSize: 16,
     alignSelf: 'center',
+    color: '#333'
   },
   eventIndicatorFiller: {
     marginTop: 3,
@@ -104,7 +106,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   weekendDayText: {
-    color: '#cccccc',
+    color: '#333',
+  },
+  outMonthDayText: {
+    color: '#a3a3a3',
   },
 });
 

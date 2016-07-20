@@ -10,8 +10,8 @@ import styles from './styles';
 
 export default class Day extends Component {
   static defaultProps = {
-    customStyle: {},
-  }
+    customStyle: {}
+  };
 
   static propTypes = {
     caption: PropTypes.any,
@@ -22,8 +22,8 @@ export default class Day extends Component {
     isToday: PropTypes.bool,
     isWeekend: PropTypes.bool,
     onPress: PropTypes.func,
-    usingEvents: PropTypes.bool,
-  }
+    usingEvents: PropTypes.bool
+  };
 
   dayCircleStyle = (isWeekend, isSelected, isToday, hasEvent) => {
     const { customStyle } = this.props;
@@ -39,61 +39,55 @@ export default class Day extends Component {
       dayCircleStyle.push(styles.hasEventCircle, customStyle.hasEventCircle && customStyle.hasEventCircle)
     }
     return dayCircleStyle;
-  }
+  };
 
-  dayTextStyle = (isWeekend, isSelected, isToday, hasEvent) => {
+  dayTextStyle = (isWeekend, isSelected, isToday, isCurrentMonth, hasEvent) => {
     const { customStyle } = this.props;
     const dayTextStyle = [styles.day, customStyle.day];
 
     if (isToday && !isSelected) {
-      dayTextStyle.push(styles.currentDayText, customStyle.currentDayText && customStyle.currentDayText);
+      dayTextStyle.push(styles.currentDayText, customStyle.currentDayText);
     } else if (isToday || isSelected) {
-      dayTextStyle.push(styles.selectedDayText, customStyle.selectedDayText && customStyle.selectedDayText);
+      dayTextStyle.push(styles.selectedDayText, customStyle.selectedDayText);
+    } else if (!isCurrentMonth) {
+      dayTextStyle.push(styles.outMonthDayText, customStyle.outMonthDayText);
     } else if (isWeekend) {
-      dayTextStyle.push(styles.weekendDayText, customStyle.weekendDayText && customStyle.weekendDayText);
+      dayTextStyle.push(styles.weekendDayText, customStyle.weekendDayText);
     }
 
     if (hasEvent) {
-      dayTextStyle.push(styles.hasEventText, customStyle.hasEventText && customStyle.hasEventText)
+      dayTextStyle.push(styles.hasEventText, customStyle.hasEventText)
     }
     return dayTextStyle;
-  }
+  };
 
   render() {
     let { caption, customStyle } = this.props;
     const {
-      filler,
       hasEvent,
       isWeekend,
       isSelected,
       isToday,
+      isCurrentMonth,
       usingEvents,
     } = this.props;
 
-    return filler
-    ? (
-        <TouchableWithoutFeedback>
-          <View style={[styles.dayButtonFiller, customStyle.dayButtonFiller]}>
-            <Text style={[styles.day, customStyle.day]}/>
-          </View>
-        </TouchableWithoutFeedback>
-      )
-    : (
-      <TouchableOpacity onPress={this.props.onPress}>
-        <View style={[styles.dayButton, customStyle.dayButton]}>
-          <View style={this.dayCircleStyle(isWeekend, isSelected, isToday, hasEvent)}>
-            <Text style={this.dayTextStyle(isWeekend, isSelected, isToday, hasEvent)}>{caption}</Text>
-          </View>
-          {usingEvents &&
+    return (
+        <TouchableOpacity onPress={this.props.onPress}>
+          <View style={[styles.dayButton, customStyle.dayButton]}>
+            <View style={this.dayCircleStyle(isWeekend, isSelected, isToday, hasEvent)}>
+              <Text style={this.dayTextStyle(isWeekend, isSelected, isToday, isCurrentMonth, hasEvent)}>{caption}</Text>
+            </View>
+            {usingEvents &&
             <View style={[
-              styles.eventIndicatorFiller,
-              customStyle.eventIndicatorFiller,
-              hasEvent && styles.eventIndicator,
-              hasEvent && customStyle.eventIndicator]}
-            />
-          }
-        </View>
-      </TouchableOpacity>
+                styles.eventIndicatorFiller,
+                customStyle.eventIndicatorFiller,
+                hasEvent && styles.eventIndicator,
+                hasEvent && customStyle.eventIndicator]}
+                />
+            }
+          </View>
+        </TouchableOpacity>
     );
   }
 }

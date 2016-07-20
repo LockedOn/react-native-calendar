@@ -65,38 +65,36 @@ const topBarStyles = StyleSheet.create({
     letterSpacing: 0
   }
 });
-function TopBar({onPrev, onNext, customStyle, scrollToToday, onTitlePress, localizedMonth, currentMonthMoment}) {
-  return (
-      <View style={[styles.calendarControls, customStyle.calendarControls]}>
-        <TouchableOpacity
-            style={[styles.controlButton, customStyle.controlButton]}
-            onPress={onPrev}>
-          <Arrow source={require("./assets/calendar-arrow-left.png")}/>
-        </TouchableOpacity>
-        <TouchableOpacity
-            style={[styles.controlButton, customStyle.controlButton]}
-            onPress={scrollToToday}>
-          <TodayBtn text="Today"/>
-        </TouchableOpacity>
-        <TouchableOpacity
-            style={topBarStyles.centredContent}
-            onPress={onTitlePress}>
-          <Text style={[topBarStyles.title, customStyle.title]}>
-            {localizedMonth} {currentMonthMoment}
-          </Text>
-          <Arrow
-              source={require("./assets/calendar-arrow-down.png")}
-              width={10}
-              height={10}/>
-        </TouchableOpacity>
-        <TouchableOpacity
-            style={[styles.controlButton, customStyle.controlButton]}
-            onPress={onNext}>
-          <Arrow source={require("./assets/calendar-arrow-right.png")}/>
-        </TouchableOpacity>
-      </View>
-  );
-}
+const TopBar = ({onPrev, onNext, customStyle, scrollToToday, onTitlePress, localizedMonth, currentMonthMoment}) => (
+    <View style={[styles.calendarControls, customStyle.calendarControls]}>
+      <TouchableOpacity
+          style={[styles.controlButton, customStyle.controlButton]}
+          onPress={onPrev}>
+        <Arrow source={require("./assets/calendar-arrow-left.png")}/>
+      </TouchableOpacity>
+      <TouchableOpacity
+          style={[styles.controlButton, customStyle.controlButton]}
+          onPress={scrollToToday}>
+        <TodayBtn text="Today"/>
+      </TouchableOpacity>
+      <TouchableOpacity
+          style={topBarStyles.centredContent}
+          onPress={onTitlePress}>
+        <Text style={[topBarStyles.title, customStyle.title]}>
+          {localizedMonth} {currentMonthMoment}
+        </Text>
+        <Arrow
+            source={require("./assets/calendar-arrow-down.png")}
+            width={10}
+            height={10}/>
+      </TouchableOpacity>
+      <TouchableOpacity
+          style={[styles.controlButton, customStyle.controlButton]}
+          onPress={onNext}>
+        <Arrow source={require("./assets/calendar-arrow-right.png")}/>
+      </TouchableOpacity>
+    </View>
+);
 TopBar.defaultProps = {
   onPrev: () => {},
   onNext: () => {},
