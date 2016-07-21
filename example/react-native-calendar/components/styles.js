@@ -62,10 +62,6 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: '#e9e9e9',
   },
-  dayButtonFiller: {
-    padding: 5,
-    width: DEVICE_WIDTH / 7,
-  },
   day: {
     fontSize: 16,
     alignSelf: 'center',
@@ -87,6 +83,12 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     borderRadius: 14,
+  },
+  todayCircle: {
+    backgroundColor: 'transparent'
+  },
+  outMonthDayCircle: {
+    backgroundColor: 'transparent'
   },
   currentDayCircle: {
     backgroundColor: 'red',

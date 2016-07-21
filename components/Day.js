@@ -21,22 +21,29 @@ export default class Day extends Component {
     isSelected: PropTypes.bool,
     isToday: PropTypes.bool,
     isWeekend: PropTypes.bool,
+    isCurrentMonth: PropTypes.bool,
     onPress: PropTypes.func,
     usingEvents: PropTypes.bool
   };
 
-  dayCircleStyle = (isWeekend, isSelected, isToday, hasEvent) => {
+  dayCircleStyle = (isWeekend, isSelected, isToday, isCurrentMonth, hasEvent) => {
     const { customStyle } = this.props;
-    const dayCircleStyle = [styles.dayCircleFiller, customStyle.dayCircleFiller && customStyle.dayCircleFiller];
+    const dayCircleStyle = [styles.dayCircleFiller, customStyle.dayCircleFiller];
+
+    if (isToday) {
+      dayCircleStyle.push(styles.todayCircle, customStyle.todayCircle);
+    } else if (!isCurrentMonth) {
+      dayCircleStyle.push(styles.outMonthDayCircle, customStyle.outMonthDayCircle);
+    }
 
     if (isSelected && !isToday) {
-      dayCircleStyle.push(styles.selectedDayCircle, customStyle.selectedDayCircle && customStyle.selectedDayCircle);
+      dayCircleStyle.push(!customStyle.selectedDayCircle && styles.selectedDayCircle, customStyle.selectedDayCircle);
     } else if (isSelected && isToday) {
-      dayCircleStyle.push(styles.currentDayCircle, customStyle.currentDayCircle && customStyle.currentDayCircle);
+      dayCircleStyle.push(!customStyle.currentDayCircle && styles.currentDayCircle, customStyle.currentDayCircle);
     }
 
     if (hasEvent) {
-      dayCircleStyle.push(styles.hasEventCircle, customStyle.hasEventCircle && customStyle.hasEventCircle)
+      dayCircleStyle.push(styles.hasEventCircle, customStyle.hasEventCircle)
     }
     return dayCircleStyle;
   };
@@ -47,7 +54,7 @@ export default class Day extends Component {
 
     if (isToday && !isSelected) {
       dayTextStyle.push(styles.currentDayText, customStyle.currentDayText);
-    } else if (isToday || isSelected) {
+    } else if (isToday && isSelected) {
       dayTextStyle.push(styles.selectedDayText, customStyle.selectedDayText);
     } else if (!isCurrentMonth) {
       dayTextStyle.push(styles.outMonthDayText, customStyle.outMonthDayText);
@@ -75,17 +82,9 @@ export default class Day extends Component {
     return (
         <TouchableOpacity onPress={this.props.onPress}>
           <View style={[styles.dayButton, customStyle.dayButton]}>
-            <View style={this.dayCircleStyle(isWeekend, isSelected, isToday, hasEvent)}>
+            <View style={this.dayCircleStyle(isWeekend, isSelected, isToday, isCurrentMonth, hasEvent)}>
               <Text style={this.dayTextStyle(isWeekend, isSelected, isToday, isCurrentMonth, hasEvent)}>{caption}</Text>
             </View>
-            {usingEvents &&
-            <View style={[
-                styles.eventIndicatorFiller,
-                customStyle.eventIndicatorFiller,
-                hasEvent && styles.eventIndicator,
-                hasEvent && customStyle.eventIndicator]}
-                />
-            }
           </View>
         </TouchableOpacity>
     );
