@@ -17,14 +17,6 @@ import styles from './styles';
 const DEVICE_WIDTH = Dimensions.get('window').width;
 const VIEW_INDEX = 2;
 
-function areSameDay(first, second) {
-  return (
-    first.isSame(second, "year") &&
-    first.isSame(second, "month") &&
-    first.isSame(second, "day")
-  )
-}
-
 export default class Calendar extends Component {
 
   state = {
@@ -155,11 +147,23 @@ export default class Calendar extends Component {
         selectedMoment = moment(this.state.selectedMoment),
         weekStart = this.props.weekStart,
         todayMoment = moment(this.props.today),
+        startOfArgMonthMoment = moment(argMoment).startOf('month'),
+        startOfArgPrevMonthMoment = moment(startOfArgMonthMoment).subtract(1, 'month'),
+        startOfArgNextMonthMoment = moment(startOfArgMonthMoment).add(1, 'month'),
         argMonthDaysCount = argMoment.daysInMonth(),
-        startOfArgMonthMoment = argMoment.startOf('month'),
-        startOfArgPrevMonthMoment = startOfArgMonthMoment.subtract(1, "month"),
-        startOfArgNextMonthMoment = startOfArgMonthMoment.add(1, "month"),
+        argPrevMonthDaysCount = startOfArgPrevMonthMoment.daysInMonth(),
+        yearMoment = argMoment.year(),
+        todayYearMoment = todayMoment.year(),
+        selectedYearMoment = selectedMoment.year(),
+        monthMoment = argMoment.month(),
+        todayMonthMoment = todayMoment.month(),
+        selectedMonthMoment = selectedMoment.month(),
+        todayDayMoment = todayMoment.date(),
+        selectedDayMoment = selectedMoment.date(),
         offset = (startOfArgMonthMoment.isoWeekday() - weekStart + 7) % 7;
+
+
+    console.log("HUI", startOfArgMonthMoment.format(), startOfArgPrevMonthMoment.format(), startOfArgNextMonthMoment.format())
 
     const events = (eventDatesMap !== null)
         ? eventDatesMap[argMoment.startOf('month').format()]
@@ -171,17 +175,24 @@ export default class Calendar extends Component {
 
     do {
       const
-          dayIndex = renderIndex - offset,
-          isoWeekday = (renderIndex + weekStart) % 7,
-          currentMoment = moment(startOfArgMonthMoment).add(dayIndex, "day"),
-          currentIndex = currentMoment.date();
+          dayIndex = renderIndex - offset + 1,
+          isoWeekday = (renderIndex + weekStart) % 7;
+
+      let
+          currentIndex = dayIndex + 1,
+          currentYear = yearMoment,
+          currentMonth = monthMoment;
 
       if (dayIndex < 0) {
         startOfMonth = startOfArgPrevMonthMoment;
         isCurrentMonth = false;
+        currentIndex = argPrevMonthDaysCount + dayIndex + 1;
+        currentMonth = monthMoment - 1;
       } else if (dayIndex >= argMonthDaysCount) {
         startOfMonth = startOfArgNextMonthMoment;
         isCurrentMonth = false;
+        currentIndex = dayIndex + 1 - argMonthDaysCount;
+        currentMonth = monthMoment + 1;
       } else {
         startOfMonth = startOfArgMonthMoment;
         isCurrentMonth = true;
@@ -193,10 +204,10 @@ export default class Calendar extends Component {
               isWeekend={isoWeekday === 0 || isoWeekday === 6}
               isCurrentMonth={isCurrentMonth}
               key={`${renderIndex}`}
-              onPress={() => this.selectDate(currentMoment)}
+              onPress={() => this.selectDate(moment(startOfArgMonthMoment).set('date', dayIndex + 1))}
               caption={`${currentIndex}`}
-              isToday={areSameDay(currentMoment, todayMoment)}
-              isSelected={areSameDay(currentMoment, selectedMoment)}
+              isToday={(todayYearMoment === currentYear) && (todayMonthMoment === currentMonth) && (currentIndex === todayDayMoment)}
+              isSelected={(selectedYearMoment === currentYear) && (selectedMonthMoment === currentMonth) && (currentIndex === selectedDayMoment)}
               hasEvent={events && events[dayIndex] === true}
               usingEvents={this.props.eventDates.length > 0}
               customStyle={this.props.customStyle}
