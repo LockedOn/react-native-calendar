@@ -1,5 +1,10 @@
 ## react-native-calendar
 
+## DEMO
+![Demo gif](https://raw.githubusercontent.com/AllmaxTeam/react-native-calendar/master/demo.gif)
+
+
+
 It is a modified version of React Native `<Calendar>` component. 
 
 Portrait mode only
@@ -58,6 +63,3 @@ Portrait mode only
 - weekendDayText  
 - hasEventCircle
 - hasEventText
-
-## DEMO
-![Demo gif](https://raw.githubusercontent.com/AllmaxTeam/react-native-calendar/master/demo.gif)
