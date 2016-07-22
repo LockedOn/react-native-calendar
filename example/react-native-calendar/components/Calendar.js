@@ -163,8 +163,6 @@ export default class Calendar extends Component {
         offset = (startOfArgMonthMoment.isoWeekday() - weekStart + 7) % 7;
 
 
-    console.log("HUI", startOfArgMonthMoment.format(), startOfArgPrevMonthMoment.format(), startOfArgNextMonthMoment.format())
-
     const events = (eventDatesMap !== null)
         ? eventDatesMap[argMoment.startOf('month').format()]
         : null;

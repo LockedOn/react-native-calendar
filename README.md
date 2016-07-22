@@ -1,12 +1,12 @@
 ## react-native-calendar
 
-A `<Calendar>` component for React Native
+It is a modified version of React Native `<Calendar>` component. 
 
 Portrait mode only
 
 ## Installation
 
-`npm install react-native-calendar --save`
+`npm install AllmaxTeam/react-native-calendar.git --save`
 
 ## Usage
 ```javascript
@@ -28,7 +28,7 @@ Portrait mode only
   startDate={'2015-08-01'}          // The first month that will display. Default: current month
   selectedDate={'2015-08-15'}       // Day to be selected
   customStyle={{day: {fontSize: 15, textAlign: 'center'}}} // Customize any pre-defined styles
-  weekStart={1} // Day on which week starts 0 - Sunday, 1 - Monday, 2 - Tuesday, etc, Default: 1
+  weekStart={7} // Day on which week starts 0 - Sunday, 1 - Monday, 2 - Tuesday, etc, Default: 1
  />
 ```
 
@@ -57,13 +57,6 @@ Portrait mode only
 - weekendDayText  
 - hasEventCircle
 - hasEventText
-
-
-## TODOS
-
-- [ ] Improve swipe feature
-- [ ] Landscape support
-- [ ] Language Support
 
 ## DEMO
 ![Demo gif](https://github.com/christopherdro/react-native-calendar-swiper/blob/master/demo.gif)
