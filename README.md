@@ -23,6 +23,7 @@ Portrait mode only
   onTouchNext={this.onTouchNext}    // Callback for next touch event
   onSwipePrev={this.onSwipePrev}    // Callback for back swipe event
   onSwipeNext={this.onSwipeNext}    // Callback for forward swipe event
+  onScrollToToday={() => {}}        // Callback for scroll to today event
   eventDates={['2015-07-01']}       // Optional array of moment() parseable dates that will show an event indicator
   today={'2016-16-05'}              // Defaults to today
   startDate={'2015-08-01'}          // The first month that will display. Default: current month

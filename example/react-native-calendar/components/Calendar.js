@@ -35,6 +35,7 @@ export default class Calendar extends Component {
     onSwipePrev: PropTypes.func,
     onTouchNext: PropTypes.func,
     onTouchPrev: PropTypes.func,
+    onScrollToToday: PropTypes.func,
     prevButtonText: PropTypes.string,
     scrollEnabled: PropTypes.bool,
     selectedDate: PropTypes.any,
@@ -132,7 +133,10 @@ export default class Calendar extends Component {
     }
   }
 
-  scrollToToday = () => this.setState({currentMonthMoment: moment()});
+  scrollToToday = () => {
+    this.props.onScrollToToday && this.props.onScrollToToday();
+    this.setState({currentMonthMoment: moment()});
+  }
 
   selectMonth = selectedMoment => this.setState({currentMonthMoment: selectedMoment});
 
