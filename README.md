@@ -59,4 +59,4 @@ Portrait mode only
 - hasEventText
 
 ## DEMO
-![Demo gif](https://github.com/christopherdro/react-native-calendar-swiper/blob/master/demo.gif)
+![Demo gif](https://raw.githubusercontent.com/AllmaxTeam/react-native-calendar/master/demo.gif)
