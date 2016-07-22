@@ -36,6 +36,7 @@ export default class Calendar extends Component {
     onTouchNext: PropTypes.func,
     onTouchPrev: PropTypes.func,
     onScrollToToday: PropTypes.func,
+    customTitleView: PropTypes.any,
     prevButtonText: PropTypes.string,
     scrollEnabled: PropTypes.bool,
     selectedDate: PropTypes.any,
@@ -272,6 +273,7 @@ export default class Calendar extends Component {
               customStyle={this.props.customStyle}
               localizedMonth={localizedMonth}
               currentMonthMoment={this.state.currentMonthMoment.year()}
+              customTitleView={this.props.customTitleView}
               onTitlePress={() => this.props.onTitlePress && this.props.onTitlePress(this.selectMonth)}/>
       );
     }

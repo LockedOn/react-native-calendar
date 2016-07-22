@@ -65,7 +65,15 @@ const topBarStyles = StyleSheet.create({
     letterSpacing: 0
   }
 });
-const TopBar = ({onPrev, onNext, customStyle, scrollToToday, onTitlePress, localizedMonth, currentMonthMoment}) => (
+const TopBar = ({
+    onPrev,
+    onNext,
+    customStyle,
+    scrollToToday,
+    onTitlePress,
+    localizedMonth,
+    currentMonthMoment,
+    customTitleView}) => (
     <View style={[styles.calendarControls, customStyle.calendarControls]}>
       <TouchableOpacity
           style={[styles.controlButton, customStyle.controlButton]}
@@ -80,9 +88,10 @@ const TopBar = ({onPrev, onNext, customStyle, scrollToToday, onTitlePress, local
       <TouchableOpacity
           style={topBarStyles.centredContent}
           onPress={onTitlePress}>
+        {customTitleView && React.createElement(customTitleView, {currentMonthMoment, localizedMonth}) ||
         <Text style={[topBarStyles.title, customStyle.title]}>
           {localizedMonth} {currentMonthMoment}
-        </Text>
+        </Text>}
         <Arrow
             source={require("./assets/calendar-arrow-down.png")}
             width={10}

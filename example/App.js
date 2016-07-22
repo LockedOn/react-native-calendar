@@ -3,6 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Dimensions
 } from 'react-native';
 
 import Calendar from './react-native-calendar';
@@ -28,6 +29,71 @@ const styles = StyleSheet.create({
   },
 });
 
+const WidthScreen = Dimensions.get("window").width;
+
+const customStyle = StyleSheet.create({
+  calendarContainer: {
+    backgroundColor: "white"
+  },
+  dayCircleFiller: {
+    borderRadius: 0,
+    backgroundColor: "#d7d7d7",
+    width: 40,
+    height: 40
+  },
+  currentDayCircle: {
+    backgroundColor: "#55b14b"
+  },
+  todayCircle: {
+    backgroundColor: "#55b14b"
+  },
+  outMonthDayCircle: {
+    backgroundColor: "#f2f2f2"
+  },
+  currentDayText: {
+    color: "white"
+  },
+  weekendDayText: {
+    color: "#333"
+  },
+  day: {
+    fontSize: 11,
+    fontWeight: "400"
+  },
+  title: {
+    fontSize: 12,
+    fontWeight: "700",
+    letterSpacing: 0
+  },
+  calendarHeading: {
+    borderBottomWidth: 0,
+    borderTopWidth: 0
+  },
+  dayButton: {
+    borderTopWidth: 0,
+    padding: 0,
+    height: (WidthScreen - (WidthScreen - 280) / 8) / 7,
+    width: (WidthScreen - (WidthScreen - 280) / 8) / 7,
+    alignItems: "flex-end"
+  },
+  dayHeading: {
+    fontSize: 11,
+    color: "#676767"
+  },
+  weekendHeading: {
+    fontSize: 11,
+    color: "#676767"
+  },
+  selectedDayCircle: {
+    borderColor: "#55b14b",
+    borderWidth: 2
+  },
+  hasEventCircle: {
+    borderBottomColor: "#55b14b",
+    borderBottomWidth: 2
+  }
+});
+
 const CustomTopBar = () => (
     <View>
       <Text>Custom topBar</Text>
@@ -47,6 +113,7 @@ class App extends Component {
       <View style={styles.container}>
         <Calendar
           ref="calendar"
+          customStyle={customStyle}
           eventDates={['2016-07-03', '2016-07-05', '2016-07-28', '2016-07-30']}
           scrollEnabled
           showControls
