@@ -272,7 +272,7 @@ export default class Calendar extends Component {
               scrollToToday={this.scrollToToday}
               customStyle={this.props.customStyle}
               localizedMonth={localizedMonth}
-              currentMonthMoment={this.state.currentMonthMoment.year()}
+              year={this.state.currentMonthMoment.year()}
               customTitleView={this.props.customTitleView}
               onTitlePress={() => this.props.onTitlePress && this.props.onTitlePress(this.selectMonth)}/>
       );

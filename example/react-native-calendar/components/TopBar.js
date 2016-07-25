@@ -72,7 +72,7 @@ const TopBar = ({
     scrollToToday,
     onTitlePress,
     localizedMonth,
-    currentMonthMoment,
+    year,
     customTitleView}) => (
     <View style={[styles.calendarControls, customStyle.calendarControls]}>
       <TouchableOpacity
@@ -88,9 +88,9 @@ const TopBar = ({
       <TouchableOpacity
           style={topBarStyles.centredContent}
           onPress={onTitlePress}>
-        {customTitleView && React.createElement(customTitleView, {currentMonthMoment, localizedMonth}) ||
+        {customTitleView && React.createElement(customTitleView, {year, localizedMonth}) ||
         <Text style={[topBarStyles.title, customStyle.title]}>
-          {localizedMonth} {currentMonthMoment}
+          {localizedMonth} {year}
         </Text>}
         <Arrow
             source={require("./assets/calendar-arrow-down.png")}
@@ -111,7 +111,7 @@ TopBar.defaultProps = {
   scrollToToday: () => {},
   onTitlePress: () => {},
   localizedMonth: "",
-  currentMonthMoment: ""
+  year: 2000
 };
 TopBar.propTypes = {
   onPrev: React.PropTypes.func.isRequired,
@@ -120,7 +120,7 @@ TopBar.propTypes = {
   scrollToToday: React.PropTypes.func.isRequired,
   onTitlePress: React.PropTypes.func.isRequired,
   localizedMonth:React.PropTypes.string.isRequired,
-  currentMonthMoment: React.PropTypes.number.isRequired
+  year: React.PropTypes.number.isRequired
 };
 
 module.exports = TopBar;
