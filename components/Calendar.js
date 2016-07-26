@@ -52,7 +52,7 @@ export default class Calendar extends Component {
     dayHeadings: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
     eventDates: [],
     monthNames: ['January', 'February', 'March', 'April', 'May', 'June',
-      'Jule', 'August', 'September', 'October', 'November', 'December'],
+      'July', 'August', 'September', 'October', 'November', 'December'],
     nextButtonText: 'Next',
     prevButtonText: 'Prev',
     scrollEnabled: false,
@@ -272,7 +272,7 @@ export default class Calendar extends Component {
               scrollToToday={this.scrollToToday}
               customStyle={this.props.customStyle}
               localizedMonth={localizedMonth}
-              currentMonthMoment={this.state.currentMonthMoment.year()}
+              year={this.state.currentMonthMoment.year()}
               customTitleView={this.props.customTitleView}
               onTitlePress={() => this.props.onTitlePress && this.props.onTitlePress(this.selectMonth)}/>
       );
