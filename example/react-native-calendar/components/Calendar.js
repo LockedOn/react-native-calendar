@@ -52,7 +52,7 @@ export default class Calendar extends Component {
     dayHeadings: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
     eventDates: [],
     monthNames: ['January', 'February', 'March', 'April', 'May', 'June',
-      'Jule', 'August', 'September', 'October', 'November', 'December'],
+      'July', 'August', 'September', 'October', 'November', 'December'],
     nextButtonText: 'Next',
     prevButtonText: 'Prev',
     scrollEnabled: false,
