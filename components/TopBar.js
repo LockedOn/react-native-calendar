@@ -89,13 +89,15 @@ const TopBar = ({
           style={topBarStyles.centredContent}
           onPress={onTitlePress}>
         {customTitleView && React.createElement(customTitleView, {year, localizedMonth}) ||
-        <Text style={[topBarStyles.title, customStyle.title]}>
-          {localizedMonth} {year}
-        </Text>}
-        <Arrow
-            source={require("./assets/calendar-arrow-down.png")}
-            width={10}
-            height={10}/>
+        <View>
+          <Text style={[topBarStyles.title, customStyle.title]}>
+            {localizedMonth} {year}
+          </Text>
+          <Arrow
+              source={require("./assets/calendar-arrow-down.png")}
+              width={10}
+              height={10}/>
+        </View>}
       </TouchableOpacity>
       <TouchableOpacity
           style={[styles.controlButton, customStyle.controlButton]}
