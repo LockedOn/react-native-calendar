@@ -88,7 +88,7 @@ const TopBar = ({
       <TouchableOpacity
           style={topBarStyles.centredContent}
           onPress={onTitlePress}>
-        {customTitleView && React.createElement(customTitleView, {year, localizedMonth}) ||
+        {customTitleView ||
         <View>
           <Text style={[topBarStyles.title, customStyle.title]}>
             {localizedMonth} {year}

@@ -259,6 +259,13 @@ export default class Calendar extends Component {
     );
   }
 
+  renderCustomTitleView (localizedMonth, year){
+    if(this.props.customTitleView) {
+      return React.cloneElement(this.props.customTitleView({year, localizedMonth}))
+    }
+    return null;
+  }
+
   renderTopBar() {
     let localizedMonth = this.props.monthNames[this.state.currentMonthMoment.month()];
     if (this.props.showControls) {
@@ -273,7 +280,7 @@ export default class Calendar extends Component {
               customStyle={this.props.customStyle}
               localizedMonth={localizedMonth}
               year={this.state.currentMonthMoment.year()}
-              customTitleView={this.props.customTitleView}
+              customTitleView={this.renderCustomTitleView(localizedMonth, this.state.currentMonthMoment.year())}
               onTitlePress={() => this.props.onTitlePress && this.props.onTitlePress(this.selectMonth)}/>
       );
     }
