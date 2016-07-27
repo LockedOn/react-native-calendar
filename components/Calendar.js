@@ -178,7 +178,7 @@ export default class Calendar extends Component {
 
     do {
       const
-          dayIndex = renderIndex - offset + 1,
+          dayIndex = renderIndex - offset,
           isoWeekday = (renderIndex + weekStart) % 7;
 
       let

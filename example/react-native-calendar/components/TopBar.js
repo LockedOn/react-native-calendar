@@ -89,7 +89,7 @@ const TopBar = ({
           style={topBarStyles.centredContent}
           onPress={onTitlePress}>
         {customTitleView ||
-        <View>
+        <View style={{flexDirection: "row", alignItems: "center"}}>
           <Text style={[topBarStyles.title, customStyle.title]}>
             {localizedMonth} {year}
           </Text>
