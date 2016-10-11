@@ -19,9 +19,21 @@ const styles = StyleSheet.create({
   },
   calendarControls: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+  },
+  container: {
+    flex: 2,
+    flexDirection: "row",
+  },
+  containerTitle: {
+    flex: 3,
+    alignItems: "center",
+    justifyContent: "center",
   },
   controlButton: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
   },
   controlButtonText: {
     margin: 10,

@@ -30,41 +30,33 @@ Arrow.propTypes = {
   height: React.PropTypes.number.isRequired
 };
 Arrow.defaultProps = {
-  width: 14,
-  height: 14
+  width: 6,
+  height: 11
 };
 
 const todayBtnStyle = StyleSheet.create({
   container: {
-    borderColor: "#d7d7d7",
-    borderRadius: 7,
-    borderWidth: 0.5,
-    paddingVertical: 5,
-    paddingHorizontal: 9
+    width: 47,
+    height: 25,
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: "#d7d7d7"
   },
   text: {
     fontSize: 11,
     color: "#676767"
   }
 });
-const TodayBtn = ({text, textStyle}) => (
-    <View style={todayBtnStyle.container}>
-      <Text style={[todayBtnStyle.text, textStyle]}>{text}</Text>
-    </View>
-);
 
 const topBarStyles = StyleSheet.create({
-  centredContent: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center"
-  },
   title: {
     fontWeight: "700",
     letterSpacing: 0
   }
 });
+
 const TopBar = ({
     onPrev,
     onNext,
@@ -75,18 +67,21 @@ const TopBar = ({
     year,
     customTitleView}) => (
     <View style={[styles.calendarControls, customStyle.calendarControls]}>
+      <View style={[styles.container, customStyle.container]}>
+        <TouchableOpacity
+            style={[styles.controlButton, customStyle.controlButton]}
+            onPress={onPrev}>
+          <Arrow source={require("./assets/calendar-arrow-left.png")}/>
+        </TouchableOpacity>
+        <View style={styles.controlButton}>
+          <TouchableOpacity style={todayBtnStyle.container}
+                            onPress={scrollToToday}>
+            <Text style={todayBtnStyle.text}>Today</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
       <TouchableOpacity
-          style={[styles.controlButton, customStyle.controlButton]}
-          onPress={onPrev}>
-        <Arrow source={require("./assets/calendar-arrow-left.png")}/>
-      </TouchableOpacity>
-      <TouchableOpacity
-          style={[styles.controlButton, customStyle.controlButton]}
-          onPress={scrollToToday}>
-        <TodayBtn text="Today"/>
-      </TouchableOpacity>
-      <TouchableOpacity
-          style={topBarStyles.centredContent}
+          style={styles.containerTitle}
           onPress={onTitlePress}>
         {customTitleView ||
         <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -99,11 +94,16 @@ const TopBar = ({
               height={10}/>
         </View>}
       </TouchableOpacity>
-      <TouchableOpacity
-          style={[styles.controlButton, customStyle.controlButton]}
-          onPress={onNext}>
-        <Arrow source={require("./assets/calendar-arrow-right.png")}/>
-      </TouchableOpacity>
+      <View style={[styles.container, customStyle.container]}>
+        <View style={[styles.controlButton, customStyle.controlButton]}>
+        </View>
+        <TouchableOpacity
+            style={[styles.controlButton, customStyle.controlButton]}
+            onPress={onNext}>
+          <Arrow source={require("./assets/calendar-arrow-right.png")}/>
+        </TouchableOpacity>
+
+      </View>
     </View>
 );
 TopBar.defaultProps = {
