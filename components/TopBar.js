@@ -1,11 +1,7 @@
 import React from "react";
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  StyleSheet
-} from "react-native";
+import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
+import PropTypes from 'prop-types';
+
 import styles from "./styles";
 
 const arrowStyle = StyleSheet.create({
@@ -25,9 +21,9 @@ const Arrow = ({source, width, height}) => (
     </View>
 );
 Arrow.propTypes = {
-  source: React.PropTypes.number.isRequired,
-  width: React.PropTypes.number.isRequired,
-  height: React.PropTypes.number.isRequired
+  source: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired
 };
 Arrow.defaultProps = {
   width: 6,
@@ -116,13 +112,13 @@ TopBar.defaultProps = {
   year: 2000
 };
 TopBar.propTypes = {
-  onPrev: React.PropTypes.func.isRequired,
-  onNext: React.PropTypes.func.isRequired,
-  customStyle: React.PropTypes.object.isRequired,
-  scrollToToday: React.PropTypes.func.isRequired,
-  onTitlePress: React.PropTypes.func.isRequired,
-  localizedMonth:React.PropTypes.string.isRequired,
-  year: React.PropTypes.number.isRequired
+  onPrev: PropTypes.func.isRequired,
+  onNext: PropTypes.func.isRequired,
+  customStyle: PropTypes.object.isRequired,
+  scrollToToday: PropTypes.func.isRequired,
+  onTitlePress: PropTypes.func.isRequired,
+  localizedMonth: PropTypes.string.isRequired,
+  year: PropTypes.number.isRequired
 };
 
 module.exports = TopBar;
